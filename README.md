@@ -1,31 +1,76 @@
-# Create React App
+## Summary
 
-This directory is a brief example of a [Create React App](https://github.com/facebook/create-react-app) site that can be deployed to Vercel with zero configuration.
+Example project of movie app using React.
+Demo allows user to browse through list of movies, see details about movie and like or dislike it.
+This demo doesn't cover all edge cases but it gives quite good overview of code structure for React project.
 
-## Deploy Your Own
+[Live version](https://example-movies-app.vercel.app/)
 
-Deploy your own Create React App project with Vercel.
+### Decisions
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/vercel/tree/main/examples/create-react-app&template=create-react-app)
+- I decided to use React hooks to encapsulate logic instead of Redux or other state management library because project is really small and it creates similar layer to separate concerns.
+- For the same reason I decide to use `fetch` function instead of `axios` library or any other to fetch data.
 
-_Live Example: https://create-react-template.vercel.app/_
+### Project structure:
 
-## Available Scripts
+- `/application` - contains main application logic and connects all domain specific components to create one application
+- `/application/pages` - contains components that handles logic in specific part of application
+- `/domain` - contains different domain specific (movies, authentication) parts of application, for bigger application this could be a good part to extract to separate package
+- `/domain/<name>/api` - contains logic to fetch data from API for specific domain
+- `/domain/<name>/hooks` - directory for React hooks that are responsible for data fetching or other domain logic for components
+- `/domain/<name>/ui` - directory for stateles UI compoents specific for domain
+- `/infrastructure`- contains tooling that is used across whole application
+- `/ui` - directory for stateles reusable and more generic UI compoents
+- `/utils`- helper functions used across application
 
-In the project directory, you can run:
+3rd party libraries used for project:
 
-### `npm start`
+- `tailwind` - to style UI
+- `jest` - for unit testing
 
-Runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### To improve:
 
-The page will reload when you make changes. You may also see any lint errors in the console.
+Here are things that I didn't manage to complete because of the limited time
 
-### `npm test`
+- add more unit tests - I created example unit test for almost every type of component or function
+- add integration tests with API
+- handle errors from API, wrap code into try/catch and create common structure for errors
+- move configuration to environment variables
+- animations between views
+- maybe use infinite scroll instead of paging
+- API doesn't provide information if user already liked/disliked movie so it creates some kind of inconsistency in UX
 
-Launches the test runner in the interactive watch mode. See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Usage
 
-### `npm run build`
+### `Setup`
 
-Builds the app for production to the `build` folder.
+Requirements to run:
 
-It correctly bundles React in production mode and optimizes the build for the best performance. The build is minified and the filenames include the hashes.
+- one of latest NodeJS versions - created using `16.14.0`
+- `yarn` download dependecies and run scripts
+
+### Quick start
+
+1. Install dependecies using `yarn` command
+2. Run in development mode using start script `yarn start` or `npm run start`
+
+### Commands
+
+```
+yarn start
+```
+
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+```
+yarn test
+```
+
+Launches the test runner.<br />
+
+```
+yarn build
+```
+
+Builds the application for production usage.
