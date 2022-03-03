@@ -1,0 +1,38 @@
+/**
+* Example use of BEM methodology in CSS
+**/
+
+$radius: 0.5rem;
+
+.movie-card {
+  display: flex;
+  border-radius: $radius;
+  overflow: hidden;
+  height: 12.5rem;
+  background: white;
+  transition: all 0.25s ease-in-out;
+
+  &__poster {
+    border-radius: $radius;
+  }
+
+  &__header {
+    font-size: 2rem;
+  }
+
+  &__sub-header {
+    font-size: 0.725rem;
+    color: gray;
+  }
+
+  &__ratings {
+    font-size: 0.725rem;
+    color: gray;
+  }
+
+  &__button {
+    color: white;
+    background: rosybrown;
+    border-radius: $radius;
+  }
+}
