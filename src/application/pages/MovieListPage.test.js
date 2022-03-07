@@ -21,7 +21,7 @@ const mockSetSearchParams = jest.fn();
 
 jest.mock("domain/movies/hooks/useMovies", () => {
   return {
-    ...jest.requireActual("react-router-dom"),
+    ...jest.requireActual("domain/movies/hooks/useMovies"),
     useMovies: (page) => mockUseMovies(page),
   };
 });
